@@ -8,12 +8,13 @@
 
 (defn obj-select
   "Selects the given keys from a JS object and returns a keywordized map"
-  [obj [& keys]]
+  [obj & keys]
   (into {}
-    (map #([(keyword %) (aget obj %)])
+    (map (fn [k]
+           [(keyword k) (aget obj (name k))])
          keys)))
 
 (defn obj-selectv
   "Selects the given keys from a JS object and returns a vector of their values"
-  [obj [& keys]]
-  (mapv #(aget obj %) keys))
+  [obj & keys]
+  (mapv #(aget obj (name %)) keys))
