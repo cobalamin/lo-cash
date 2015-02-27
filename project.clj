@@ -2,8 +2,9 @@
   :description "FIXME: write this!"
   :url "http://example.com/FIXME"
 
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2755"]]
+  :dependencies [[org.clojure/clojure "1.7.0-alpha5"]
+                 [org.clojure/clojurescript "0.0-2913" :scope "provided"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]]
 
   :node-dependencies [[source-map-support "0.2.8"]]
 
@@ -12,23 +13,16 @@
 
   :source-paths ["src" "target/classes"]
 
-  :clean-targets ["out" "out-adv"]
+  :clean-targets ["dev"]
 
   :cljsbuild {
     :builds [{:id "dev"
               :source-paths ["src"]
               :compiler {
                 :main lo-cash.core
-                :output-to "out/lo_cash.js"
-                :output-dir "out"
+                :output-to "dev/out/dev.js"
+                :output-dir "dev/out"
                 :optimizations :none
                 :cache-analysis true
-                :source-map true}}
-             {:id "release"
-              :source-paths ["src"]
-              :compiler {
-                :main lo-cash.core
-                :output-to "out-adv/lo_cash.min.js"
-                :output-dir "out-adv"
-                :optimizations :advanced
-                :pretty-print false}}]})
+                :pretty-print true
+                :source-map true}}]})
